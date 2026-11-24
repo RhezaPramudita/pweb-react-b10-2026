@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { AddApplicationForm } from './components/AddApplicationForm.tsx';
 import { ConflictBanner } from './components/ConflictBanner.tsx';
+import { DashboardStats } from './components/DashboardStats.tsx';
+import { ExplorePage } from './components/ExplorePage.tsx';
+import { OfferComparator } from './components/OfferComparator.tsx';
 import { PipelinePage } from './components/PipelinePage.tsx';
 import { UndoToast } from './components/UndoToast.tsx';
 import { useApplications } from './hooks/useApplications.ts';
@@ -10,7 +13,7 @@ type Tab = 'explore' | 'pipeline' | 'offer';
 
 function App() {
   const [tab, setTab] = useState<Tab>('pipeline');
-  const [kaptenSkills] = useLocalStorage<string[]>('kaptenSkills', ['React', 'TypeScript', 'CSS']);
+  const [kaptenSkills, setKaptenSkills] = useLocalStorage<string[]>('kaptenSkills', ['React', 'TypeScript', 'CSS']);
   const {
     applications,
     addApplication,
@@ -33,7 +36,14 @@ function App() {
       {/* Banner di luar tab & pakai seluruh data -> tetap tampil walau filter aktif */}
       <ConflictBanner applications={applications} />
 
-      {tab === 'explore' && <p>Eksplorasi Lowongan (bagian A)</p>}
+      {tab === 'explore' && (
+        <ExplorePage
+          applications={applications}
+          kaptenSkills={kaptenSkills}
+          onChangeSkills={setKaptenSkills}
+          onAdd={addApplication}
+        />
+      )}
       {tab === 'pipeline' && (
         <>
           <AddApplicationForm applications={applications} onAdd={addApplication} />
@@ -45,7 +55,12 @@ function App() {
           />
         </>
       )}
-      {tab === 'offer' && <p>Dashboard &amp; Offer Comparator (bagian A)</p>}
+      {tab === 'offer' && (
+        <>
+          <DashboardStats applications={applications} />
+          <OfferComparator applications={applications} kaptenSkills={kaptenSkills} />
+        </>
+      )}
 
       <UndoToast deleted={lastDeleted} onUndo={undoDelete} />
     </div>

@@ -1,0 +1,94 @@
+{
+  "jobs": [
+    {
+      "id": 9001,
+      "title": "Frontend Intern",
+      "company_name": "Garuda FinTech",
+      "category": "Software Development",
+      "candidate_required_location": "Indonesia (Remote)",
+      "salary": "Rp 4.000.000 / bulan",
+      "tags": ["React", "TypeScript", "CSS", "Docker"]
+    },
+    {
+      "id": 9002,
+      "title": "Backend Developer Intern",
+      "company_name": "Nusantara Logistik",
+      "category": "Software Development",
+      "candidate_required_location": "Jakarta (Hybrid)",
+      "salary": "Rp 4.500.000 / bulan",
+      "tags": ["Node.js", "Express", "PostgreSQL", "Docker"]
+    },
+    {
+      "id": 9003,
+      "title": "Fullstack Web Intern",
+      "company_name": "Kopi Kenangan Digital",
+      "category": "Software Development",
+      "candidate_required_location": "Surabaya (Onsite)",
+      "salary": "Rp 3.500.000 / bulan",
+      "tags": ["React", "Node.js", "TypeScript", "MongoDB", "CSS"]
+    },
+    {
+      "id": 9004,
+      "title": "UI/UX Designer Intern",
+      "company_name": "Batik Kreatif Studio",
+      "category": "Design",
+      "candidate_required_location": "Yogyakarta (Hybrid)",
+      "salary": "Rp 3.000.000 / bulan",
+      "tags": ["Figma", "CSS", "Prototyping"]
+    },
+    {
+      "id": 9005,
+      "title": "Data Analyst Intern",
+      "company_name": "Archipelago Insight",
+      "category": "Data",
+      "candidate_required_location": "Indonesia (Remote)",
+      "salary": "Rp 4.000.000 / bulan",
+      "tags": ["Python", "SQL", "Tableau"]
+    },
+    {
+      "id": 9006,
+      "title": "Mobile Developer Intern",
+      "company_name": "Ojol Nusantara",
+      "category": "Software Development",
+      "candidate_required_location": "Bandung (Onsite)",
+      "salary": "Rp 3.800.000 / bulan",
+      "tags": ["React Native", "TypeScript", "Firebase"]
+    },
+    {
+      "id": 9007,
+      "title": "DevOps Intern",
+      "company_name": "Cloud Merapi",
+      "category": "DevOps / Sysadmin",
+      "candidate_required_location": "Indonesia (Remote)",
+      "salary": "Rp 5.000.000 / bulan",
+      "tags": ["Docker", "Kubernetes", "Linux", "CI/CD"]
+    },
+    {
+      "id": 9008,
+      "title": "QA Engineer Intern",
+      "company_name": "Tokopintar",
+      "category": "QA",
+      "candidate_required_location": "Jakarta (Hybrid)",
+      "salary": "Rp 3.500.000 / bulan",
+      "tags": ["Testing", "JavaScript", "Cypress"]
+    },
+    {
+      "id": 9009,
+      "title": "React Developer Intern",
+      "company_name": "Sinar Edutech",
+      "category": "Software Development",
+      "candidate_required_location": "Indonesia (Remote)",
+      "salary": "Rp 4.200.000 / bulan",
+      "tags": ["React", "TypeScript", "CSS"]
+    },
+    {
+      "id": 9010,
+      "title": "Product Marketing Intern",
+      "company_name": "Rempah Commerce",
+      "category": "Marketing",
+      "candidate_required_location": "Surabaya (Onsite)",
+      "salary": "Rp 2.800.000 / bulan",
+      "tags": ["Copywriting", "SEO", "Analytics"]
+    }
+  ]
+}

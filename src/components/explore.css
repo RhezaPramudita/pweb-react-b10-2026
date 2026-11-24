@@ -1,0 +1,71 @@
+/* Style bagian Eksplorasi Lowongan & Dashboard (A). Memakai kelas wr-* dari warroom.css. */
+.ex-page { display: grid; gap: 16px; }
+.ex-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.ex-gap { margin-top: 10px; }
+.ex-gap-b { margin-bottom: 12px; }
+
+.ex-skill-form { display: flex; gap: 8px; }
+.ex-skill-form input { flex: 1 1 auto; }
+
+.ex-chips,
+.ex-tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.ex-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font-size: 14px;
+}
+.ex-chip button {
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+.ex-tag { font-size: 12px; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--border); }
+.ex-tag-ok { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+.ex-tag-missing { color: var(--text); border-style: dashed; }
+.ex-missing { font-size: 13px; color: #b45309; margin-top: 6px; }
+
+.ex-error { color: var(--text-h); }
+.ex-error-actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+
+.wr-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.ex-stats {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.ex-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.ex-stat-value { font-size: 28px; font-weight: 600; color: var(--text-h); font-variant-numeric: tabular-nums; }
+.ex-stat-label { font-size: 13px; color: var(--text); }
+.ex-stat-danger { border-color: #fca5a5; }
+.ex-stat-danger .ex-stat-value { color: #dc2626; }
+
+.ex-table-wrap { overflow-x: auto; }
+.ex-table { width: 100%; border-collapse: collapse; font-size: 14px; color: var(--text-h); }
+.ex-table th,
+.ex-table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+.ex-table th { font-weight: 500; color: var(--text); }
+.ex-best { background: rgba(34, 197, 94, 0.08); }
+
+@media (max-width: 800px) {
+  .ex-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
