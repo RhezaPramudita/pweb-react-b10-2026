@@ -32,13 +32,14 @@ assert.equal(getSkillMatch(['React'], []).score, 0);
 assert.ok(isDuplicate([base({})], '  garuda fintech ', 'FRONTEND INTERN'));
 assert.ok(!isDuplicate([base({})], 'Garuda FinTech', 'Backend Intern'));
 
-// Ghosting: >14 hari & hanya APPLIED/SCREENING
-const now = new Date().toISOString();
-assert.ok(!isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: now })));
-assert.ok(isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: shiftDays(now, 15) })));
-assert.ok(isRawanGhosting(base({ status: 'SCREENING', lastUpdatedAt: shiftDays(now, 15) })));
-assert.ok(!isRawanGhosting(base({ status: 'INTERVIEW', lastUpdatedAt: shiftDays(now, 15) })));
-assert.ok(!isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: shiftDays(now, 14) })));
+// Ghosting: >14 hari & hanya APPLIED/SCREENING (pakai waktu acuan tetap agar tidak flaky)
+const nowMs = Date.now();
+const now = new Date(nowMs).toISOString();
+assert.ok(!isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: now }), nowMs));
+assert.ok(isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: shiftDays(now, 15) }), nowMs));
+assert.ok(isRawanGhosting(base({ status: 'SCREENING', lastUpdatedAt: shiftDays(now, 15) }), nowMs));
+assert.ok(!isRawanGhosting(base({ status: 'INTERVIEW', lastUpdatedAt: shiftDays(now, 15) }), nowMs));
+assert.ok(!isRawanGhosting(base({ status: 'APPLIED', lastUpdatedAt: shiftDays(now, 14) }), nowMs));
 
 // Bentrok: selisih 30 menit bentrok, 60 menit tidak, non-INTERVIEW diabaikan
 const a = base({ status: 'INTERVIEW', interviewDateTime: '2026-11-22T10:00' });

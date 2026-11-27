@@ -103,7 +103,7 @@ export function PipelinePage({ applications, kaptenSkills, onSimulate, onDelete,
             const done = app.checklist.filter((c) => c.done).length;
             const canSimulate = app.status === 'APPLIED' || app.status === 'SCREENING';
             return (
-              <li key={app.id} className="wr-card">
+              <li key={app.id} className="wr-card" data-status={app.status}>
                 <div className="wr-card-head">
                   <div>
                     <strong>{app.role}</strong>
