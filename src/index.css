@@ -1,107 +1,104 @@
+/* Design tokens bersama. Komponen cukup memakai var(--...) agar light/dark otomatis ikut. */
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Light: kertas abu hangat + tinta hitam */
+  --bg: #e7e8e3;
+  --surface: #f4f4f0;
+  --surface-2: #ebece6;
+  --text: #5c625e;
+  --text-h: #101412;
+  --border: #d3d6ce;
+  --code-bg: #e0e2da;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --primary: #101412;
+  --primary-hover: #2a302c;
+  --on-primary: #e6e27c;
+  --primary-soft: rgba(16, 20, 18, 0.08);
+  --accent: var(--primary);
+  --accent-bg: rgba(16, 20, 18, 0.06);
+  --accent-border: rgba(16, 20, 18, 0.35);
+  --lime: #e6e27c; /* aksen tetap, sama di kedua tema */
+  --dock: #141a17;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
+  --good-fg: #2f7d32;
+  --warn-fg: #9a6700;
+  --bad-fg: #c0392b;
+  --info-fg: #2c5ea8;
+  --violet-fg: #6a4fb0;
+  --muted-fg: #5c625e;
+  --good-bg: rgba(47, 125, 50, 0.1);
+  --warn-bg: rgba(154, 103, 0, 0.1);
+  --bad-bg: rgba(192, 57, 43, 0.1);
+  --info-bg: rgba(44, 94, 168, 0.1);
+  --muted-bg: rgba(92, 98, 94, 0.1);
+  --danger: #c0392b;
+
+  --radius: 16px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.35);
+
+  --sans: 'Archivo', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: var(--sans);
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  font: 15px/1.5 var(--sans);
   color-scheme: light;
   color: var(--text);
   background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
 /* Dark Mode dikendalikan hook useTheme lewat <html data-theme="dark"> */
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --text: #9ca3af;
-  --text-h: #f3f4f6;
-  --bg: #16171d;
-  --border: #2e303a;
-  --code-bg: #1f2028;
-  --accent: #c084fc;
-  --accent-bg: rgba(192, 132, 252, 0.15);
-  --accent-border: rgba(192, 132, 252, 0.5);
-  --social-bg: rgba(47, 48, 58, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  /* Dark: hitam kehijauan + aksen lime */
+  --bg: #0b0f0d;
+  --surface: #121815;
+  --surface-2: #18201c;
+  --text: #8b958e;
+  --text-h: #eceee9;
+  --border: #232c27;
+  --code-bg: #1b231f;
+
+  --primary: #e6e27c;
+  --primary-hover: #f1ed96;
+  --on-primary: #101412;
+  --primary-soft: rgba(230, 226, 124, 0.12);
+  --accent-bg: rgba(230, 226, 124, 0.1);
+  --accent-border: rgba(230, 226, 124, 0.45);
+
+  --good-fg: #8fd694;
+  --warn-fg: #f2c46d;
+  --bad-fg: #f08a7e;
+  --info-fg: #8db8f2;
+  --violet-fg: #b8a4f0;
+  --muted-fg: #a5aea8;
+  --good-bg: rgba(143, 214, 148, 0.1);
+  --warn-bg: rgba(242, 196, 109, 0.1);
+  --bad-bg: rgba(240, 138, 126, 0.1);
+  --info-bg: rgba(141, 184, 242, 0.1);
+  --muted-bg: rgba(165, 174, 168, 0.1);
+  --danger: #f08a7e;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.8);
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; min-height: 100svh; background: var(--bg); transition: background 0.2s; }
+#root { min-height: 100svh; }
 
-body {
-  margin: 0;
-}
+h1, h2, h3 { font-family: var(--heading); color: var(--text-h); letter-spacing: -0.01em; }
+/* Judul gaya poster: tebal, kapital, sedikit dipadatkan */
+.display { font-weight: 900; font-stretch: 80%; text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.9; }
+h1 { font-size: 20px; font-weight: 700; margin: 0; }
+h2 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+p { margin: 0; }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+code { font-family: var(--mono); font-size: 13px; padding: 2px 6px; border-radius: 6px; background: var(--code-bg); color: var(--text-h); }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+button, input, select, textarea { font: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

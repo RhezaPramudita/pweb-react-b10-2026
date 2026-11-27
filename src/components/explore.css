@@ -17,8 +17,11 @@
   border-radius: 999px;
   background: var(--accent-bg);
   color: var(--text-h);
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--accent-border);
 }
+.ex-chip button:hover { color: var(--danger); }
 .ex-chip button {
   border: none;
   background: none;
@@ -28,15 +31,14 @@
   cursor: pointer;
   padding: 0 4px;
 }
-.ex-tag { font-size: 12px; padding: 2px 8px; border-radius: 6px; border: 1px solid var(--border); }
-.ex-tag-ok { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
-.ex-tag-missing { color: var(--text); border-style: dashed; }
-.ex-missing { font-size: 13px; color: #b45309; margin-top: 6px; }
+.ex-tag { font-family: var(--mono); font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-h); }
+.ex-tag-ok { background: var(--good-bg); color: var(--good-fg); border-color: transparent; }
+.ex-tag-missing { background: transparent; color: var(--bad-fg); border-color: var(--bad-fg); border-style: dashed; }
+.ex-missing { font-size: 13px; color: var(--warn-fg); margin-top: 8px; }
 
 .ex-error { color: var(--text-h); }
 .ex-error-actions { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
 
-.wr-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .ex-stats {
   list-style: none;
@@ -50,21 +52,28 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 14px;
+  position: relative;
+  padding: 16px;
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
 }
-.ex-stat-value { font-size: 28px; font-weight: 600; color: var(--text-h); font-variant-numeric: tabular-nums; }
-.ex-stat-label { font-size: 13px; color: var(--text); }
-.ex-stat-danger { border-color: #fca5a5; }
-.ex-stat-danger .ex-stat-value { color: #dc2626; }
+.ex-stat::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--primary); }
+.ex-stat-value { font-size: 44px; font-weight: 900; font-stretch: 80%; letter-spacing: -0.02em; line-height: 1; color: var(--text-h); font-variant-numeric: tabular-nums; }
+.ex-stat-label { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
+.ex-stat-danger { border-color: var(--bad-bg); }
+.ex-stat-danger::before { background: var(--danger); }
+.ex-stat-danger .ex-stat-value { color: var(--danger); }
 
 .ex-table-wrap { overflow-x: auto; }
 .ex-table { width: 100%; border-collapse: collapse; font-size: 14px; color: var(--text-h); }
 .ex-table th,
 .ex-table td { padding: 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
-.ex-table th { font-weight: 500; color: var(--text); }
-.ex-best { background: rgba(34, 197, 94, 0.08); }
+.ex-table th { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); background: var(--surface-2); }
+.ex-best { background: var(--good-bg); }
+.ex-best td:first-child { box-shadow: inset 3px 0 0 var(--good-fg); }
 
 @media (max-width: 800px) {
   .ex-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }

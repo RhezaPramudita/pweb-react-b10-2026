@@ -1,101 +1,222 @@
-/* Style bagian War Room (B). Memakai variabel warna dari index.css. */
+/* Komponen UI bersama (panel, form, tombol, badge, kartu, banner, toast).
+   Dipakai semua bagian; warna dari token di index.css. */
+
+/* ---------- Panel ---------- */
 .wr-panel {
   text-align: left;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 20px;
-  background: var(--bg);
-  font-size: 15px;
+  box-shadow: var(--shadow-sm);
 }
-.wr-panel h2 { margin-bottom: 16px; }
+.wr-panel h2 { margin-bottom: 16px; font-size: 24px; font-weight: 900; font-stretch: 82%; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; }
+.wr-muted { color: var(--text); font-size: 13px; }
 
-.wr-panel input,
-.wr-panel select {
-  font: inherit;
-  padding: 8px 10px;
+/* ---------- Input ---------- */
+.wr-panel input:not([type='checkbox']):not([type='radio']),
+.wr-panel select,
+.wr-panel textarea {
+  padding: 9px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--bg);
+  border-radius: 10px;
+  background: var(--surface-2);
   color: var(--text-h);
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  min-height: 40px;
 }
-.wr-panel input[aria-invalid='true'] { border-color: #dc2626; }
+.wr-panel input:not([type='checkbox']):not([type='radio']):focus,
+.wr-panel select:focus,
+.wr-panel textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.wr-panel input[aria-invalid='true'] { border-color: var(--danger); box-shadow: 0 0 0 3px var(--bad-bg); }
+.wr-panel input[type='checkbox'] { accent-color: var(--primary); width: 16px; height: 16px; }
 
+/* ---------- Form ---------- */
 .wr-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 16px;
-  margin-bottom: 16px;
+  gap: 14px 16px;
+  margin-bottom: 18px;
 }
-.wr-form-grid label { display: flex; flex-direction: column; gap: 4px; color: var(--text-h); }
+.wr-form-grid label { display: flex; flex-direction: column; gap: 6px; color: var(--text); font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+.wr-form-grid label input,
+.wr-form-grid label select { font-family: var(--sans); font-size: 15px; font-weight: 400; text-transform: none; letter-spacing: normal; }
 .wr-span-2 { grid-column: span 2; }
-.wr-error { color: #dc2626; font-size: 13px; }
+.wr-error { color: var(--danger); font-size: 11px; font-weight: 500; text-transform: none; letter-spacing: normal; }
 
+/* ---------- Tombol ---------- */
 .wr-btn {
-  font: inherit;
-  font-size: 14px;
-  padding: 6px 12px;
-  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 10px;
   border: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--surface);
   color: var(--text-h);
   cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s, box-shadow 0.15s;
 }
-.wr-btn:hover { border-color: var(--accent-border); }
-.wr-btn-primary { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
-.wr-btn-danger { color: #dc2626; border-color: #fca5a5; }
+.wr-btn:hover:not(:disabled) { border-color: var(--accent-border); background: var(--surface-2); }
+.wr-btn:active:not(:disabled) { transform: translateY(1px); }
+.wr-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.wr-btn-primary { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.wr-btn-primary:hover:not(:disabled) { background: var(--primary-hover); border-color: var(--primary-hover); transform: translateY(-1px); }
+.wr-btn-danger { color: var(--danger); border-color: var(--bad-bg); }
+.wr-btn-danger:hover:not(:disabled) { background: var(--bad-bg); border-color: var(--danger); }
 
-.wr-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-.wr-filters input[type='search'] { flex: 1 1 220px; }
-.wr-toggle { display: flex; align-items: center; gap: 6px; color: var(--text-h); }
+/* ---------- Filter bar ---------- */
+.wr-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+.wr-filters input[type='search'] { flex: 1 1 220px; background: var(--surface); }
+.wr-filters select { background: var(--surface); }
+.wr-toggle { display: flex; align-items: center; gap: 8px; color: var(--text-h); font-size: 13px; font-weight: 600; cursor: pointer; padding: 0 6px; }
 
-.wr-empty { padding: 32px; text-align: center; border: 1px dashed var(--border); border-radius: 8px; }
+/* ---------- Empty state ---------- */
+.wr-empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--text);
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+}
 
+/* ---------- Kartu ---------- */
 .wr-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-.wr-card { border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.wr-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 16px 14px 20px;
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+  animation: wr-in 0.2s ease-out;
+}
+.wr-card::before { /* aksen warna di kiri kartu */
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--border);
+}
+.wr-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--accent-border); }
+.wr-card-head strong { font-weight: 800; letter-spacing: -0.01em; }
 .wr-card-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--text-h); }
-.wr-muted { color: var(--text); font-size: 13px; }
-.wr-badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
-.wr-badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--code-bg); color: var(--text-h); }
-.wr-good { background: #dcfce7; color: #166534; }
-.wr-warn { background: #fef9c3; color: #854d0e; }
-.wr-bad { background: #fee2e2; color: #991b1b; }
-.wr-status-offer { background: #dbeafe; color: #1e40af; }
-.wr-status-rejected { background: #f3f4f6; color: #4b5563; }
+.wr-card-head strong { font-size: 15px; }
 
-.wr-meta { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 10px 0; font-size: 13px; }
-.wr-meta dt { display: inline; color: var(--text); }
+.wr-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0; font-size: 13px; }
+.wr-meta dt { display: inline; color: var(--text); font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
 .wr-meta dt::after { content: ': '; }
-.wr-meta dd { display: inline; margin: 0; color: var(--text-h); }
-.wr-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.wr-meta dd { display: inline; margin: 0; color: var(--text-h); font-weight: 600; }
+.wr-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
 
+/* ---------- Badge ---------- */
+.wr-badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+.wr-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 7px;
+  color: var(--muted-fg);
+  border: 1px solid color-mix(in srgb, currentColor 50%, transparent);
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  white-space: nowrap;
+}
+.wr-good { color: var(--good-fg); }
+.wr-warn { color: var(--warn-fg); }
+.wr-bad { color: var(--bad-fg); }
+
+.wr-status-wishlist { color: var(--muted-fg); }
+.wr-status-applied { color: var(--info-fg); }
+.wr-status-screening { color: var(--violet-fg); }
+.wr-status-interview { color: var(--warn-fg); }
+.wr-status-offer { color: var(--good-fg); }
+.wr-status-rejected { color: var(--bad-fg); }
+.wr-status-ghosted { color: var(--text); border-style: dashed; }
+
+/* ---------- Banner bentrok ---------- */
 .wr-banner {
   text-align: left;
-  border-left: 4px solid #dc2626;
-  background: #fef2f2;
-  color: #991b1b;
+  border: 1px solid var(--bad-bg);
+  border-left: 4px solid var(--danger);
+  background: var(--bad-bg);
+  color: var(--bad-fg);
   padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
+  animation: wr-in 0.25s ease-out;
 }
 .wr-banner ul { margin: 4px 0 0; padding-left: 18px; }
 
+/* ---------- Toast undo ---------- */
 .wr-toast {
   position: fixed;
   right: 16px;
-  bottom: 16px;
+  bottom: 96px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: #111827;
-  color: #f9fafb;
+  gap: 14px;
+  max-width: calc(100vw - 32px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--dock);
+  color: #eceee9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 14px;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5);
   z-index: 50;
+  animation: wr-toast-in 0.25s ease-out;
 }
-.wr-toast button { background: none; border: none; color: #93c5fd; font: inherit; text-decoration: underline; cursor: pointer; }
+.wr-toast button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 4px 12px;
+  color: var(--lime);
+  font-family: var(--mono);
+  font-weight: 600;
+  cursor: pointer;
+}
+.wr-toast button:hover { background: rgba(255, 255, 255, 0.18); }
+
+@keyframes wr-in { from { opacity: 0; transform: translateY(6px); } }
+@keyframes wr-toast-in { from { opacity: 0; transform: translateY(16px) scale(0.96); } }
 
 @media (max-width: 640px) {
   .wr-form-grid { grid-template-columns: 1fr; }
   .wr-span-2 { grid-column: auto; }
+  .wr-panel { padding: 16px; }
 }
+.wr-banner-title { display: inline-flex; align-items: center; gap: 6px; }
+/* Warna aksen kartu mengikuti status lamaran */
+.wr-card[data-status='APPLIED']::before { background: var(--info-fg); }
+.wr-card[data-status='SCREENING']::before { background: var(--violet-fg); }
+.wr-card[data-status='INTERVIEW']::before { background: var(--warn-fg); }
+.wr-card[data-status='OFFER']::before { background: var(--good-fg); }
+.wr-card[data-status='REJECTED']::before { background: var(--danger); }
+.wr-card[data-status='GHOSTED']::before,
+.wr-card[data-status='WISHLIST']::before { background: var(--border); }

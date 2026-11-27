@@ -1,184 +1,123 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* Kerangka aplikasi: header tipis, hero tipografi, dock navigasi mengambang. */
+.app { min-height: 100svh; display: flex; flex-direction: column; }
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
-}
-
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+/* ---------- Header ---------- */
+.app-header {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.app-brand { display: flex; align-items: center; gap: 10px; }
+.app-brand h1 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.app-logo,
+.app-dock-logo {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--text-h);
+  color: var(--bg);
+  font-weight: 900;
+  font-size: 13px;
+  font-stretch: 85%;
+}
+.app-tagline { font-family: var(--mono); font-size: 11px; color: var(--text); text-transform: uppercase; letter-spacing: 0.06em; }
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+/* ---------- Hero ---------- */
+.app-hero { padding: 28px 0 8px; display: grid; gap: 14px; }
+.app-hero h2 {
+  margin: 0;
+  font-size: clamp(48px, 10vw, 128px);
+  color: var(--text-h);
+}
+.app-hero h2 span { display: block; animation: app-rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.app-hero h2 span:nth-child(2) { animation-delay: 0.06s; }
+.app-hero h2 span:nth-child(3) { animation-delay: 0.12s; }
+.app-hero p { font-family: var(--mono); font-size: 12px; color: var(--text); max-width: 46ch; }
+@keyframes app-rise { from { opacity: 0; transform: translateY(0.25em); filter: blur(6px); } }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+/* ---------- Konten ---------- */
+.app-main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 140px; /* ruang untuk dock di bawah */
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+/* ---------- Dock navigasi (selalu gelap di kedua tema) ---------- */
+.app-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+  background: var(--dock);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.6);
+  max-width: calc(100vw - 24px);
+}
+.app-dock-logo { background: #232b27; color: #eceee9; width: 44px; height: 44px; }
+.app-dock-tabs { display: flex; gap: 4px; padding: 4px; border-radius: 12px; background: #1d2421; }
+.app-dock-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: #262e2a;
+  color: #b9c1bb;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.app-dock-tab:hover { color: #fff; background: #2f3833; }
+.app-dock-tab.active { border-color: var(--lime); color: var(--lime); background: rgba(230, 226, 124, 0.08); }
+.app-dock-tab:focus-visible,
+.app-dock-theme:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+.app-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.app-dock-tab.active .app-count { background: var(--lime); color: #101412; }
+
+.app-dock-theme {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--lime);
+  color: #101412;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+}
+.app-dock-theme:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+@media (max-width: 560px) {
+  .app-tagline { display: none; }
+  .app-dock-logo { display: none; }
+  .app-dock-label { display: none; } /* HP: cukup ikon + angka, nama tetap ada di aria-label */
+  .app-dock-tab { padding: 0 12px; }
 }

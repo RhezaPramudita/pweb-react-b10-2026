@@ -1,3 +1,4 @@
+import { TriangleAlert } from 'lucide-react';
 import type { Application } from '../types/index.ts';
 import { findInterviewConflicts } from '../utils/application.ts';
 import { formatDateTime } from '../utils/format.ts';
@@ -10,7 +11,9 @@ export function ConflictBanner({ applications }: { applications: Application[] }
 
   return (
     <div className="wr-banner" role="alert">
-      <strong>Jadwal Interview Bentrok:</strong>
+      <strong className="wr-banner-title">
+        <TriangleAlert size={16} aria-hidden="true" /> Jadwal Interview Bentrok
+      </strong>
       <ul>
         {conflicts.map(([a, b]) => (
           <li key={`${a.id}-${b.id}`}>
