@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Application, ApplicationStatus } from '../types/index.ts';
+import { useSearchShortcut } from '../hooks/useSearchShortcut.ts';
 import { isRawanGhosting } from '../utils/application.ts';
 import { getSkillMatch } from '../utils/skillMatch.ts';
 import { formatDateTime, formatRupiah, matchClass } from '../utils/format.ts';
@@ -30,10 +31,13 @@ interface Props {
   kaptenSkills: string[];
   onSimulate: (id: string) => void;
   onDelete: (id: string) => void;
+  onOpenDetail: (id: string) => void;
 }
 
-export function PipelinePage({ applications, kaptenSkills, onSimulate, onDelete }: Props) {
+export function PipelinePage({ applications, kaptenSkills, onSimulate, onDelete, onOpenDetail }: Props) {
   const [query, setQuery] = useState('');
+  const searchRef = useRef<HTMLInputElement>(null);
+  useSearchShortcut(searchRef); // tekan "/" untuk fokus ke pencarian
   const [statusFilter, setStatusFilter] = useState<ApplicationStatus | 'ALL'>('ALL');
   const [onlyGhosting, setOnlyGhosting] = useState(false);
   const [sortBy, setSortBy] = useState<SortKey>('newest');
@@ -52,9 +56,10 @@ export function PipelinePage({ applications, kaptenSkills, onSimulate, onDelete 
 
       <div className="wr-filters">
         <input
+          ref={searchRef}
           type="search"
           aria-label="Cari perusahaan atau posisi"
-          placeholder="Cari perusahaan atau posisi..."
+          placeholder="Cari perusahaan atau posisi... (tekan /)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -124,6 +129,9 @@ export function PipelinePage({ applications, kaptenSkills, onSimulate, onDelete 
                 </dl>
 
                 <div className="wr-actions">
+                  <button type="button" className="wr-btn wr-btn-primary" onClick={() => onOpenDetail(app.id)}>
+                    Detail
+                  </button>
                   {canSimulate && (
                     <button type="button" className="wr-btn" onClick={() => onSimulate(app.id)}>
                       Simulasi +15 Hari

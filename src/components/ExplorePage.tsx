@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSearchShortcut } from '../hooks/useSearchShortcut.ts';
 import type { Application, JobListing, WorkMode } from '../types/index.ts';
 import { fetchFallbackJobs, fetchRemoteJobs } from '../services/jobService.ts';
 import { useDebounce } from '../hooks/useDebounce.ts';
@@ -40,6 +41,8 @@ export function ExplorePage({ applications, kaptenSkills, onChangeSkills, onAdd 
   const [category, setCategory] = useState('ALL');
   const [sortBy, setSortBy] = useState<SortKey>('match');
   const debouncedQuery = useDebounce(query, 400);
+  const searchRef = useRef<HTMLInputElement>(null);
+  useSearchShortcut(searchRef); // tekan "/" untuk fokus ke pencarian
 
   // Fetch lowongan. AbortController membatalkan request lama saat source berubah / unmount.
   useEffect(() => {
@@ -114,10 +117,11 @@ export function ExplorePage({ applications, kaptenSkills, onChangeSkills, onAdd 
 
         <div className="wr-filters">
           <input
+            ref={searchRef}
             id="job-search"
             type="search"
             aria-label="Cari lowongan"
-            placeholder="Cari posisi, perusahaan, atau skill..."
+            placeholder="Cari posisi, perusahaan, atau skill... (tekan /)"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />

@@ -1,0 +1,55 @@
+/* Style Detail Lamaran & Interview Prep Timer (C). Memakai kelas wr-* dari warroom.css. */
+.dm-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-y: auto;
+  z-index: 40;
+}
+.dm-box { width: min(1000px, 100%); box-shadow: var(--shadow); }
+
+.dm-header { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.dm-header h2 { margin-bottom: 4px; }
+
+.dm-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+.dm-col { display: grid; gap: 16px; align-content: start; }
+
+.dm-section { border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
+.dm-section h3 { margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-h); }
+.dm-section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+
+.dm-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; color: var(--text-h); }
+.dm-row label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.dm-grow { flex: 1 1 180px; }
+.dm-transition { display: grid; gap: 10px; padding: 12px; border-radius: 8px; background: var(--code-bg); }
+
+.dm-stages { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; font-size: 12px; }
+.dm-stage { padding-top: 6px; border-top: 3px solid var(--border); color: var(--text); }
+.dm-stage-done { border-top-color: #1d4ed8; color: var(--text-h); font-weight: 600; }
+
+.dm-progress { height: 6px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.dm-progress-bar { height: 100%; background: #1d4ed8; transition: width 0.2s; }
+
+.dm-checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.dm-checklist li { display: flex; justify-content: space-between; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; color: var(--text-h); }
+.dm-checklist label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.dm-done { text-decoration: line-through; color: var(--text); }
+.dm-icon-btn { border: none; background: none; color: var(--text); cursor: pointer; font-size: 14px; }
+.dm-icon-btn:hover { color: #dc2626; }
+
+.dm-question { color: var(--text-h); font-style: italic; }
+.dm-timer { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dm-time { font-family: var(--mono); font-size: 36px; font-weight: 600; color: var(--text-h); font-variant-numeric: tabular-nums; }
+.dm-time-up { color: #dc2626; }
+
+.dm-logs { list-style: none; padding: 0 0 0 12px; margin: 0; display: grid; gap: 10px; border-left: 2px solid var(--border); font-size: 13px; color: var(--text-h); max-height: 260px; overflow-y: auto; }
+.dm-logs time { font-family: var(--mono); font-size: 12px; }
+
+@media (max-width: 800px) {
+  .dm-grid { grid-template-columns: 1fr; }
+  .dm-stages { grid-template-columns: repeat(3, 1fr); }
+}
